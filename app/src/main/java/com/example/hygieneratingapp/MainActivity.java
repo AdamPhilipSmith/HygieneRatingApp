@@ -14,6 +14,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -35,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
     EditText input;
     private double lat;
     private double lng;
-    private String stringLat = "test";
-    private String stringLng = "test2";
+    //private double lat2;
+
     @Override
 
 
@@ -87,13 +88,16 @@ public class MainActivity extends AppCompatActivity {
                 public void onLocationChanged(Location location){
                     lat = location.getLatitude();
                     lng = location.getLongitude();
-                    stringLat = Double.toString(lat);
-                    stringLng = Double.toString(lng);
+                    // String stringLat = Double.toString(lat);
+                    //final String stringLng = Double.toString(lng);
 
-                    String test = ( ""+ stringLat + stringLng );
-                    ((TextView) findViewById(R.id.testBox)).setText(test);
+                    // test = ( ""+ stringLat + stringLng );
+
                     ((TextView) findViewById(R.id.latTextView)).setText(""+lat);
                     ((TextView) findViewById(R.id.lngTextView)).setText(""+lng);
+                    //lat2 = lat;
+
+
 
                 }
                 @Override
@@ -114,15 +118,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                TextView latTextView = findViewById(R.id.latTextView);
-                TextView lngTextView = findViewById(R.id.lngTextView);
-                String stringLat = latTextView.getText().toString();
-                String stringLng = lngTextView.getText().toString();
+                //TextView latTextView = findViewById(R.id.latTextView);
+                //TextView lngTextView = findViewById(R.id.lngTextView);
+                //String stringLat = latTextView.getText().toString();
+               // String stringLng = lngTextView.getText().toString();
 
+                //String test = ("test" + lat2 + lng );
+                //((TextView) findViewById(R.id.testBox)).setText(test);
+                //String test = ("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + stringLat + "&long=" + stringLng );
 
-                String test = ("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + stringLat + "&long=" + stringLng );
-                URL url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + lat + "&long=" + lng );
+                //assigns variables to buttons
+                Button one = findViewById(R.id.SearchByLocation);
+                Button two = findViewById(R.id.SearchByPostCode);
+               URL url;
 
+                if (one.isPressed() == true) {
+                    url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + lat + "&long=" + lng);
+                }
+
+                if (two.isPressed() == true) {
+
+                    url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + lat + "&long=" + lng);
+                }
                 //Test
 
                 URLConnection connection = url.openConnection();
@@ -148,4 +165,6 @@ public class MainActivity extends AppCompatActivity {
             input.setText("ERROR2");
         }
     }
+
+
 }

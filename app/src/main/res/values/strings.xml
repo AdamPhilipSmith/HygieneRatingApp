@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Hygiene Rating App</string>
-    <string name="Search">Search</string>
+    <string name="SearchByLocation">Search by Current Location</string>
+    <string name="SearchByName">Search by Name</string>
+    <string name="SearchByPostcode">Search by Postcode</string>
+    <string name="ShowRecent">Show Recently Rated</string>
+
 </resources>
