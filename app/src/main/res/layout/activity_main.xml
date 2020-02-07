@@ -6,80 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginBottom="29dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/latTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SearchByPostCode"
-        tools:text="0" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-37dp"
+        tools:layout_editor_absoluteY="-16dp">
 
-    <Button
-        android:id="@+id/SearchByLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="141dp"
-        android:layout_marginBottom="75dp"
-        android:onClick="Search"
-        android:text="@string/SearchByLocation"
-        app:layout_constraintBottom_toTopOf="@+id/SearchByPostCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/latTextView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="21dp"
-        android:text="0"
-        app:layout_constraintBottom_toTopOf="@+id/lngTextView"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="@+id/SearchByPostCode"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+            <Button
+                android:id="@+id/SearchByLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="Search"
+                android:text="@string/SearchByLocation" />
 
-    <TextView
-        android:id="@+id/lngTextView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="95dp"
-        android:text="0"
-        app:layout_constraintBottom_toTopOf="@+id/testBox"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="@+id/SearchByLocation"
-        app:layout_constraintTop_toBottomOf="@+id/latTextView" />
+            <Button
+                android:id="@+id/SearchByPostCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="Search"
+                android:text="@string/SearchByPostcode" />
 
-    <EditText
-        android:id="@+id/testBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="87dp"
-        android:layout_marginBottom="69dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lngTextView" />
+            <EditText
+                android:id="@+id/enterPostcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="53dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/EnterPostcode" />
 
-    <Button
-        android:id="@+id/SearchByPostCode"
-        android:layout_width="243dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="73dp"
-        android:layout_marginBottom="78dp"
-        android:onClick="Search"
-        android:text="@string/SearchByPostcode"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SearchByLocation" />
+            <Button
+                android:id="@+id/SearchByName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="57dp"
+                android:onClick="Search"
+                android:text="@string/SearchByName" />
+
+            <EditText
+                android:id="@+id/enterName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="91dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/EnterName" />
+
+            <Button
+                android:id="@+id/showRecent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="Search"
+                android:text="@string/ShowRecent" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="203dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginBottom="11dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/testBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="33dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

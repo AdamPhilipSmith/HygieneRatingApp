@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import org.json.*;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -93,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
                     // test = ( ""+ stringLat + stringLng );
 
-                    ((TextView) findViewById(R.id.latTextView)).setText(""+lat);
-                    ((TextView) findViewById(R.id.lngTextView)).setText(""+lng);
+                    //((TextView) findViewById(R.id.latTextView)).setText(""+lat);
+                    //((TextView) findViewById(R.id.lngTextView)).setText(""+lng);
                     //lat2 = lat;
 
 
@@ -123,22 +125,47 @@ public class MainActivity extends AppCompatActivity {
                 //String stringLat = latTextView.getText().toString();
                // String stringLng = lngTextView.getText().toString();
 
-                //String test = ("test" + lat2 + lng );
-                //((TextView) findViewById(R.id.testBox)).setText(test);
+
                 //String test = ("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + stringLat + "&long=" + stringLng );
 
                 //assigns variables to buttons
                 Button one = findViewById(R.id.SearchByLocation);
                 Button two = findViewById(R.id.SearchByPostCode);
-               URL url;
+                Button three = findViewById(R.id.SearchByName);
+                Button four = findViewById(R.id.showRecent);
+               URL url = null;
 
                 if (one.isPressed() == true) {
                     url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + lat + "&long=" + lng);
+                    //String test = ("test" + lat + lng );
+                    //((TextView) findViewById(R.id.testBox)).setText(test);
                 }
 
                 if (two.isPressed() == true) {
+                    EditText input = (EditText) findViewById(R.id.enterPostcode);
+                    String inputS = input.getText().toString();
 
-                    url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + lat + "&long=" + lng);
+                    url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_postcode&postcode=" + inputS);
+                }
+
+                if (three.isPressed() == true) {
+                    EditText input = (EditText) findViewById(R.id.enterName);
+                    String inputX = input.getText().toString();
+
+                    // Converts spaces to '%20' to allow search
+                    String inputY = inputX.replaceAll(" " , "%20");
+
+
+
+                    url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_name&name=" + inputY);
+                    //String test = (inputY );
+                    //((TextView) findViewById(R.id.testBox)).setText(test);
+                }
+
+                if (four.isPressed() == true) {
+
+
+                    url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=show_recent");
                 }
                 //Test
 

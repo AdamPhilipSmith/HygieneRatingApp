@@ -4,5 +4,8 @@
     <string name="SearchByName">Search by Name</string>
     <string name="SearchByPostcode">Search by Postcode</string>
     <string name="ShowRecent">Show Recently Rated</string>
+    <string name="EnterPostcode">Enter Postcode</string>
+    <string name="EnterName">Enter Name</string>
+
 
 </resources>
