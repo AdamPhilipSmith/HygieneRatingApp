@@ -13,17 +13,23 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -180,12 +186,26 @@ public class MainActivity extends AppCompatActivity {
                     responseBody = responseBody + line;
                 }
                 in.close();
-                input.setText(responseBody);
-                //input.setText("Result!");
+                JSONArray aryJSONStrings = new JSONArray(responseBody);
+                String test3 = null;
+                for (int i=0; i<aryJSONStrings.length(); i++) {
+                    test3 += ("Address= ");
+                    test3 += aryJSONStrings.getJSONObject(i).getString("BusinessName");
+                    test3 += (" Rating= ");
+                    test3 += aryJSONStrings.getJSONObject(i).getString("RatingValue");
+                    test3 += (" ");
+                }
+                //String response = obj.getString("id");
+
+                input.setText(test3);
+                //input.setText(responseBody);
             }
             catch (IOException ioe){
                 input.setText("ERROR1");
                 ioe.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+                System.out.println("ERROR3");
             }
 
         } else {
