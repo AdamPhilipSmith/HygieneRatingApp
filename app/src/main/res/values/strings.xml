@@ -6,6 +6,8 @@
     <string name="ShowRecent">Show Recently Rated</string>
     <string name="EnterPostcode">Enter Postcode</string>
     <string name="EnterName">Enter Name</string>
+    <string name="Display">Display</string>
+    <string name="BackButton">Search Again</string>
 
 
 </resources>

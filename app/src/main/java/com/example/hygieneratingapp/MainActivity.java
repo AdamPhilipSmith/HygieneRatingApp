@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,23 +14,19 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import org.json.*;
+
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
     EditText input;
     private double lat;
     private double lng;
+    Button button;
+    Button button2;
     //private double lat2;
+    TextView display;
 
     @Override
 
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        addListenerOnButton();
 
         boolean ok = true;
         for (int i = 0; i < requiredPermissions.length; i++) {
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
         //Allows Networking to be done in  the same thread
         StrictMode.ThreadPolicy policy  = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -71,9 +74,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void addListenerOnButton() {
+        final Context context = this;
+
+        button = (Button) findViewById(R.id.button2);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, MainActivity2.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+
+    }
+
 
     public void Search(View v){
-        input = (EditText) findViewById(R.id.editText);
+        //input = (EditText) findViewById(R.id.Display3);
+
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
@@ -187,17 +212,28 @@ public class MainActivity extends AppCompatActivity {
                 }
                 in.close();
                 JSONArray aryJSONStrings = new JSONArray(responseBody);
-                String test3 = null;
+                String test3 = "";
                 for (int i=0; i<aryJSONStrings.length(); i++) {
-                    test3 += ("Address= ");
+                    test3 += ("Address = ");
                     test3 += aryJSONStrings.getJSONObject(i).getString("BusinessName");
-                    test3 += (" Rating= ");
-                    test3 += aryJSONStrings.getJSONObject(i).getString("RatingValue");
-                    test3 += (" ");
+                    test3 += ("\nPost Code = ");
+                    test3 += aryJSONStrings.getJSONObject(i).getString("PostCode");
+                    test3 += ("\nRating = ");
+
+                    // Changes Rating to 'Exempt' if it is '-1'.
+                    if (aryJSONStrings.getJSONObject(i).getString("RatingValue").equals("-1")){
+                        test3 += "Exempt";
+                    }
+                    else test3 += aryJSONStrings.getJSONObject(i).getString("RatingValue");
+                    test3 += ("\n\n\n");
                 }
                 //String response = obj.getString("id");
+                //String test = "test";
 
-                input.setText(test3);
+                //Sets intent so that the results can be displayed on the second page
+                Intent sendStuff = new Intent(this, MainActivity2.class);
+                sendStuff.putExtra("t", test3);
+                startActivity(sendStuff);
                 //input.setText(responseBody);
             }
             catch (IOException ioe){
