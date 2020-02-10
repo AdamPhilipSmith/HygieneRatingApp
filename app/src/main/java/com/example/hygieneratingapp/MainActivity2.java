@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class MainActivity2 extends Activity {
 
-    Button button;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,8 @@ public class MainActivity2 extends Activity {
         Intent startingIntent = getIntent();
         //Bundle bundle = getIntent().getExtras();
         String message = startingIntent.getStringExtra("t");
+
+
         TextView txtView = (TextView) findViewById(R.id.Display2);
         txtView.setText(message);
     }
