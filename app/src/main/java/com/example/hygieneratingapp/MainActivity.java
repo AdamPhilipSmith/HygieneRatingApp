@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        addListenerOnButton();
+        //addListenerOnButton();
 
         boolean ok = true;
         for (int i = 0; i < requiredPermissions.length; i++) {
@@ -107,26 +107,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Enables new screen to display once a button is pushed
-    public void addListenerOnButton() {
-        final Context context = this;
+    //public void addListenerOnButton() {
+        //final Context context = this;
 
-        button = (Button) findViewById(R.id.button2);
-
-
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, MainActivity2.class);
-                startActivity(intent);
-
-            }
-
-        });
+        //button = (Button) findViewById(R.id.button2);
 
 
-    }
+        //button.setOnClickListener(new View.OnClickListener() {
+
+            //@Override
+            //public void onClick(View arg0) {
+
+                //Intent intent = new Intent(context, MainActivity2.class);
+                //startActivity(intent);
+
+            //}
+
+        //});
+
+
+    //}
 
 
     public void Search(View v){
