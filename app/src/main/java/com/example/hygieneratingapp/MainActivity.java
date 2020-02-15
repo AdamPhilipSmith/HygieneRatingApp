@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //addListenerOnButton();
 
+        //Gets GPS Location
         boolean ok = true;
         for (int i = 0; i < requiredPermissions.length; i++) {
             int result = ActivityCompat.checkSelfPermission(this,requiredPermissions[i]);
@@ -67,16 +68,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //Gets GPS Location
-        boolean ok2 = true;
-        for (int i = 0; i < requiredPermissions.length; i++) {
-            int result = ActivityCompat.checkSelfPermission(this,requiredPermissions[i]);
-            if (result != PackageManager.PERMISSION_GRANTED) {
-                ok2 = false;
-            }
-        }
 
-        if (!ok2) {
+        if (!ok) {
             ActivityCompat.requestPermissions(this, requiredPermissions, 1);
             System.exit(0);
 
