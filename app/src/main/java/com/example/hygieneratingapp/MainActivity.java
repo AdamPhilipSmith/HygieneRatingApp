@@ -119,8 +119,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if (one.isPressed() == true) {
                     url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=search_location&lat=" + lat + "&long=" + lng);
-                    //String test = ("test" + lat + lng );
-                    //((TextView) findViewById(R.id.testBox)).setText(test);
+
+                    //Sends intent to MainActivity 2 to tell it to add distance to results.
+                    //TODO change sendtext name
+                    Intent sendText = new Intent(this, MainActivity2.class);
+                    String test = "test";
+                    sendText.putExtra("s", test);
+                    startActivity(sendText);
                 }
 
                 if (two.isPressed() == true) {
@@ -166,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent sendText = new Intent(this, MainActivity2.class);
                 sendText.putExtra("t", responseBody);
-                //sendText.putExtra(Intent.EXTRA_STREAM, imageUri);
                 startActivity(sendText);
                 //Parses the String for the relevant information
                 //LinearLayout layout = (LinearLayout)findViewById(R.id.Display4);

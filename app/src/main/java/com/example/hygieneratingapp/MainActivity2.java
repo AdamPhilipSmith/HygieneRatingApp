@@ -19,26 +19,23 @@ import org.json.JSONException;
 
 public class MainActivity2 extends Activity {
 
-    String test3 = "";
+
     String postCode[] = new String [10];
     String name[] = new String [10];
+    String addressLine1[] = new String [10];
+    String addressLine2[] = new String [10];
+    String addressLine3[] = new String [10];
+    String distance[] = new String [10];
+
     int rating [] = new int [10];
 
-    int[] ratings = new int[]{
-            R.drawable.r0,
-            R.drawable.r1,
-            R.drawable.r2,
-            R.drawable.r3,
-            R.drawable.r4,
-            R.drawable.r5,
-    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         Intent startingIntent = getIntent();
-        //Bundle bundle = getIntent().getExtras();
+
         String message = startingIntent.getStringExtra("t");
 
         JSONArray aryJSONStrings = null;
@@ -50,6 +47,10 @@ public class MainActivity2 extends Activity {
 
             name[i]= aryJSONStrings.getJSONObject(i).getString("BusinessName");
             postCode[i] = aryJSONStrings.getJSONObject(i).getString("PostCode");
+            addressLine1[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine1");
+            addressLine2[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine2");
+            addressLine3[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine3");
+            //distance[i] = aryJSONStrings.getJSONObject(i).getString("DistanceKM");
 
 
             // Changes Rating to 'Exempt' if it is '-1'.
@@ -105,8 +106,15 @@ public class MainActivity2 extends Activity {
 
         for(int i=0;i<10;i++) {
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put("name", "Name : " + name[i]);
-            map.put("pcode", "Post Code : " + postCode[i]);
+            map.put("name", name[i]);
+            map.put("pcode", postCode[i]);
+            map.put("addressLine1", addressLine1[i]);
+            map.put("addressLine2", addressLine2[i]);
+            map.put("addressLine3", addressLine3[i]);
+            map.put("distance", distance[i] + "km away");
+
+
+
 
             map.put("rating",  Integer.toString(rating[i]));
             list.add(map);
@@ -114,34 +122,44 @@ public class MainActivity2 extends Activity {
         }
 
         // Keys used in Hashmap
-        String[] from = { "rating","name","pcode" };
+        String[] from = { "rating","name","pcode", "addressLine1","addressLine2","addressLine3" };
 
         // Ids of views in listview_layout
-        int[] to = { R.id.rating,R.id.name,R.id.pcode};
+        int[] to = { R.id.rating,R.id.name,R.id.pcode, R.id.addressLine1, R.id.addressLine2, R.id.addressLine3};
 
+        //Intent startingIntent2 = getIntent();
 
+        //String message2 = startingIntent2.getStringExtra("s");
 
+        //Button one = findViewById(R.id.SearchByLocation);
 
-        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), list, R.layout.activity_main2, from, to);
+        //if (message2.equals("test")){
+           // String[] from2 = { "rating","name","pcode", "addressLine1","addressLine2","addressLine3", "distance" };
+            //int[] to2 = { R.id.rating,R.id.name,R.id.pcode, R.id.addressLine1, R.id.addressLine2, R.id.addressLine3, R.id.distance};
 
-        // Getting a reference to listview of main.xml layout file
-        ListView listView = ( ListView ) findViewById(R.id.listview);
+           // SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), list, R.layout.listview, from2, to2);
 
-        // Setting the adapter to the listView
-        Log.d("e", "f" + Arrays.toString(name));
-        Log.d("e", "f" + Arrays.toString(from));
-        Log.d("e", "f" + Arrays.toString(to));
-        listView.setAdapter(adapter);
+            // Getting a reference to listview of main.xml layout file
+            //ListView listView = ( ListView ) findViewById(R.id.listview);
+
+            // Setting the adapter to the listView
+
+            //listView.setAdapter(adapter);
+        //}
+
+        //else {
+
+            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), list, R.layout.listview, from, to);
+
+            // Getting a reference to listview of main.xml layout file
+            ListView listView = (ListView) findViewById(R.id.listview);
+
+            // Setting the adapter to the listView
+
+            listView.setAdapter(adapter);
+       // }
     }
 
 
-
-
-
-
-
-
-        //TextView txtView = (TextView) findViewById(R.id.Display2);
-        //txtView.setText(test3);
     }
 

@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:maxWidth="42dp"
-        android:maxHeight="42dp"
+        android:maxWidth="140dp"
+        android:maxHeight="160dp"
+        android:contentDescription="changethis"
         android:scaleType="fitCenter"
-        android:contentDescription="rating"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
@@ -27,14 +27,44 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:textSize="15dp"
             />
 
         <TextView
-            android:id="@+id/pcode"
+        android:id="@+id/addressLine1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        />
+
+        <TextView
+            android:id="@+id/addressLine2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10dp"
             />
+
+        <TextView
+            android:id="@+id/addressLine3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            />
+
+        <TextView
+        android:id="@+id/pcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            />
+
     </LinearLayout>
 </LinearLayout>
