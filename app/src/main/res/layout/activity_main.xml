@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="453dp"
-        tools:layout_editor_absoluteY="-187dp">
+        tools:layout_editor_absoluteY="-187dp"
+        android:background="#40739e">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -22,6 +23,7 @@
                 android:id="@+id/SearchByLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#718093"
                 android:onClick="Search"
                 android:text="@string/SearchByLocation" />
 
@@ -29,6 +31,7 @@
                 android:id="@+id/showRecent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#718093"
                 android:onClick="Search"
                 android:text="@string/ShowRecent" />
 
@@ -36,6 +39,7 @@
                 android:id="@+id/SearchByPostCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#718093"
                 android:onClick="Search"
                 android:text="@string/SearchByPostcode" />
 
@@ -53,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="57dp"
+                android:backgroundTint="#718093"
                 android:onClick="Search"
                 android:text="@string/SearchByName" />
 
