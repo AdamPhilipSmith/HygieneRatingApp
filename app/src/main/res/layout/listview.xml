@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     >
     <ImageView
@@ -15,6 +15,7 @@
         android:scaleType="fitCenter"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:paddingBottom="60dp"
         />
 
@@ -33,13 +34,11 @@
             />
 
 
-
-
         <TextView
             android:id="@+id/addressLine1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:textColor="#000000"
             />
 
@@ -47,7 +46,7 @@
             android:id="@+id/addressLine2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:textColor="#000000"
             />
 
@@ -55,7 +54,7 @@
             android:id="@+id/addressLine3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:textColor="#000000"
             />
 
@@ -64,21 +63,21 @@
             android:id="@+id/distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
-            android:textColor="#000000"
+            android:textSize="12dp"
+            android:textColor="#e84118"
             />
         <TextView
             android:id="@+id/pcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:textColor="#000000"
             />
         <TextView
             android:id="@+id/ratingDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:textColor="#000000"
             />
 

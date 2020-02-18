@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,9 +36,11 @@ public class MainActivity2 extends Activity {
         setContentView(R.layout.activity_main2);
         Intent startingIntent = getIntent();
 
-        String message = startingIntent.getStringExtra("t");
+        String message = startingIntent.getStringExtra("webString");
 
         JSONArray aryJSONStrings = null;
+
+        //Parses through the received info, assigning it to the relevant headers.
         try {
             aryJSONStrings = new JSONArray(message);
 
@@ -56,12 +60,11 @@ public class MainActivity2 extends Activity {
                 addressLine3[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine3");
 
 
-
                 ratingDate[i] = aryJSONStrings.getJSONObject(i).getString("RatingDate");
 
 
                 //Checks to see if 'DistanceKM' exists before trying to access. Stops crash.
-                if(aryJSONStrings.getJSONObject(i).has("DistanceKM")) {
+                if (aryJSONStrings.getJSONObject(i).has("DistanceKM")) {
 
 
                     String distanceLong = aryJSONStrings.getJSONObject(i).getString("DistanceKM");
@@ -104,12 +107,14 @@ public class MainActivity2 extends Activity {
 
             }
 
-        //Catches JSON exceptions and prints a stack trace if so.
+            //Catches JSON exceptions and prints a stack trace if so.
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d("JSON error", "JSON error");
         }
 
+
+        //Adds addresses to a hash map with the relevant keys
         List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
         for (int i = 0; i < 10; i++) {
@@ -131,7 +136,7 @@ public class MainActivity2 extends Activity {
 
             //Again checks that 'DistanceKM' exists, if it doesn't then nothing is added to the map
             try {
-                if(aryJSONStrings.getJSONObject(0).has("DistanceKM")) {
+                if (aryJSONStrings.getJSONObject(0).has("DistanceKM")) {
                     map.put("distance", distance[i] + "km away");
                 }
             } catch (JSONException e) {
@@ -146,14 +151,11 @@ public class MainActivity2 extends Activity {
         }
 
 
-
-
         // Keys used in Hashmap
         String[] from = {"rating", "name", "pcode", "addressLine1", "addressLine2", "addressLine3", "ratingDate", "distance"};
 
         // Ids of views in listview_layout
         int[] to = {R.id.rating, R.id.name, R.id.pcode, R.id.addressLine1, R.id.addressLine2, R.id.addressLine3, R.id.ratingDate, R.id.distance};
-
 
 
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), list, R.layout.listview, from, to);
@@ -162,11 +164,29 @@ public class MainActivity2 extends Activity {
         ListView listView = (ListView) findViewById(R.id.listview);
 
 
-
         // Setting the adapter to the listView
 
         listView.setAdapter(adapter);
-        // }
+
+        //Gets rid of white spaces:
+        //TextView line1 = (TextView) findViewById(R.id.addressLine1);
+        //TextView line2 = (TextView) findViewById(R.id.addressLine2);
+        //TextView line3 = (TextView) findViewById(R.id.addressLine3);
+
+        //if(line1.getText().equals(""))
+        //{
+           // line1.setVisibility(View.GONE);
+        //}
+        //if(line2.getText().equals(""))
+        //{
+            //line2.setVisibility(View.GONE);
+        //}
+        //if(line3.getText().equals(""))
+        //{
+            //line3.setVisibility(View.GONE);
+        //}
+
+
     }
 
 

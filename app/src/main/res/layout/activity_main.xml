@@ -9,9 +9,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         tools:layout_editor_absoluteX="453dp"
-        tools:layout_editor_absoluteY="-187dp"
-        android:background="#40739e">
+        tools:layout_editor_absoluteY="-187dp">
 
         <LinearLayout
             android:id="@+id/linearLayout"

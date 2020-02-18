@@ -2,6 +2,7 @@ package com.example.hygieneratingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -16,12 +17,12 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     EditText input;
     private double lat;
     private double lng;
-
-
 
 
     @Override
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
                     url = new URL("http://sandbox.kriswelsh.com/hygieneapi/hygiene.php?op=show_recent");
                 }
-                //Test
+
 
                 URLConnection connection = url.openConnection();
                 InputStreamReader ins = new InputStreamReader(connection.getInputStream());
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 in.close();
 
                 Intent sendText = new Intent(this, MainActivity2.class);
-                sendText.putExtra("t", responseBody);
+                sendText.putExtra("webString", responseBody);
                 startActivity(sendText);
 
             } catch (IOException ioe) {
