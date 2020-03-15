@@ -30,32 +30,33 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:textColor="#000000"
+            android:textColor="#6cb340"
             />
 
 
         <TextView
-            android:id="@+id/addressLine1"
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12dp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
+            />
+
+
+        <TextView
+            android:id="@+id/pcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="#ffffff"
             />
 
         <TextView
-            android:id="@+id/addressLine2"
+            android:id="@+id/ratingDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12dp"
-            android:textColor="#000000"
-            />
-
-        <TextView
-            android:id="@+id/addressLine3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="#000000"
+            android:textColor="#707070"
             />
 
 
@@ -66,20 +67,8 @@
             android:textSize="12dp"
             android:textColor="#e84118"
             />
-        <TextView
-            android:id="@+id/pcode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="#000000"
-            />
-        <TextView
-            android:id="@+id/ratingDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="#000000"
-            />
+
+
 
     </LinearLayout>
 </LinearLayout>
