@@ -5,9 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.maps.Style;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,18 +27,21 @@ import org.json.JSONException;
 
 public class MainActivity2 extends Activity {
 
-
+    Button button;
     String postCode[] = new String[10];
     String name[] = new String[10];
+    String address[] = new String[10];
     String addressLine1[] = new String[10];
     String addressLine2[] = new String[10];
     String addressLine3[] = new String[10];
     String distance[] = new String[10];
     String ratingDate[] = new String[10];
+    String lat[] = new String[10];
+    String lng[] = new String[10];
 
     int rating[] = new int[10];
 
-
+    private MapView mapView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,20 +56,55 @@ public class MainActivity2 extends Activity {
         try {
             aryJSONStrings = new JSONArray(message);
 
+            //String latTest = aryJSONStrings.getJSONObject(0).getString("Latitude:");
+
+            //Log.d("Mylog2", latTest);
 
             for (int i = 0; i < aryJSONStrings.length(); i++) {
+                boolean newLineRequired = false;
+                boolean newLineRequired2 = false;
+                String addressTemp = "";
+
+
 
                 name[i] = aryJSONStrings.getJSONObject(i).getString("BusinessName");
+
+
                 postCode[i] = aryJSONStrings.getJSONObject(i).getString("PostCode");
 
+                //Checks if the address line has been supplied and only adds it to the view if so.
+                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine1").equals("") ) {
+                    addressTemp += aryJSONStrings.getJSONObject(i).getString("AddressLine1");
 
-                addressLine1[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine1");
+                    newLineRequired = true;
+                }
+
+                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine2").equals("")){
+
+                    if (newLineRequired == true){
+                        addressTemp += "\n";
+                    }
+
+                    addressTemp += aryJSONStrings.getJSONObject(i).getString("AddressLine2");
+                    newLineRequired2 = true;
+                }
+                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine3").equals("")){
+                    if (newLineRequired2 == true){
+                        addressTemp += "\n";
+                    }
+                    addressTemp += aryJSONStrings.getJSONObject(i).getString("AddressLine3");
+
+                }
+
+                address[i] = addressTemp;
+
+                //addressLine1[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine1");
 
 
-                addressLine2[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine2");
+                //addressLine2[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine2");
 
 
-                addressLine3[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine3");
+                //addressLine3[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine3");
 
 
                 ratingDate[i] = aryJSONStrings.getJSONObject(i).getString("RatingDate");
@@ -69,9 +116,16 @@ public class MainActivity2 extends Activity {
 
                     String distanceLong = aryJSONStrings.getJSONObject(i).getString("DistanceKM");
 
-                    //Gets rid of all the decimal places
+                    //Cuts down the decimal places of distance
                     distance[i] = distanceLong.substring(0, 4);
                 }
+
+
+
+
+
+
+
 
 
                 //Following 'IF' statements assign correct image to the rating
@@ -107,11 +161,25 @@ public class MainActivity2 extends Activity {
 
             }
 
+            //Intent intent = new Intent(this, MapBox.class);
+            //intent.putExtra("latitude", lat);
+            //startActivity(intent);
+
+            //Intent intent2 = new Intent(this, MapBox.class);
+            //intent2.putExtra("longitude", lng);
+           //startActivity(intent2);
+
+
+
+
             //Catches JSON exceptions and prints a stack trace if so.
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d("JSON error", "JSON error");
         }
+
+
+
 
 
         //Adds addresses to a hash map with the relevant keys
@@ -122,19 +190,21 @@ public class MainActivity2 extends Activity {
             map.put("name", name[i]);
             map.put("pcode", postCode[i]);
 
-            map.put("addressLine1", addressLine1[i]);
+            map.put("address", address[i]);
+
+            //map.put("addressLine1", addressLine1[i]);
 
 
-            map.put("addressLine2", addressLine2[i]);
+            //map.put("addressLine2", addressLine2[i]);
 
 
-            map.put("addressLine3", addressLine3[i]);
+            //map.put("addressLine3", addressLine3[i]);
 
 
             map.put("ratingDate", "Date Rated :" + ratingDate[i]);
 
 
-            //Again checks that 'DistanceKM' exists, if it doesn't then nothing is added to the map
+            //Again checks that 'DistanceKM' exists, if it doesn't then nothing is added to the app
             try {
                 if (aryJSONStrings.getJSONObject(0).has("DistanceKM")) {
                     map.put("distance", distance[i] + "km away");
@@ -152,10 +222,10 @@ public class MainActivity2 extends Activity {
 
 
         // Keys used in Hashmap
-        String[] from = {"rating", "name", "pcode", "addressLine1", "addressLine2", "addressLine3", "ratingDate", "distance"};
+        String[] from = {"rating", "name", "pcode", "address", "ratingDate", "distance"};
 
         // Ids of views in listview_layout
-        int[] to = {R.id.rating, R.id.name, R.id.pcode, R.id.addressLine1, R.id.addressLine2, R.id.addressLine3, R.id.ratingDate, R.id.distance};
+        int[] to = {R.id.rating, R.id.name, R.id.pcode, R.id.address, R.id.ratingDate, R.id.distance};
 
 
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), list, R.layout.listview, from, to);
@@ -172,23 +242,59 @@ public class MainActivity2 extends Activity {
         //TextView line1 = (TextView) findViewById(R.id.addressLine1);
         //TextView line2 = (TextView) findViewById(R.id.addressLine2);
         //TextView line3 = (TextView) findViewById(R.id.addressLine3);
-
+        //TODO Put all the addresses into one TextView using 'newLine'.
         //if(line1.getText().equals(""))
         //{
-           // line1.setVisibility(View.GONE);
+        // line1.setVisibility(View.GONE);
         //}
         //if(line2.getText().equals(""))
         //{
-            //line2.setVisibility(View.GONE);
+        //line2.setVisibility(View.GONE);
         //}
         //if(line3.getText().equals(""))
         //{
-            //line3.setVisibility(View.GONE);
+        //line3.setVisibility(View.GONE);
         //}
 
 
-    }
+        //Gets lat and long values from MainActivity 1
+        Intent receiveIntent2 = this.getIntent();
 
+
+        final String latString = receiveIntent2.getStringExtra("latString");
+        final String lngString = receiveIntent2.getStringExtra("lngString");
+        Log.d("myLog6", latString);
+
+        //final Intent sendIntent = new Intent(this, MapBox.class);
+        //sendIntent.putExtra("latString", latString);
+        //sendIntent.putExtra("lngString", lngString);
+
+        //startActivity(sendIntent);
+
+        button=(Button)findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+
+                //Gets lat and long values from above and send them overt to Map Bax when starting Activity
+                Intent i = new Intent(MainActivity2.this, MapBox.class);
+
+
+                i.putExtra("latString", latString);
+                i.putExtra("lngString", lngString);
+
+                startActivity(i);
+
+                //startActivity(i);
+            }
+
+
+        });
+
+    }
 
 }
 

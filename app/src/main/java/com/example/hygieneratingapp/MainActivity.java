@@ -14,15 +14,20 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.maps.MapView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Mapbox Access token
+        Mapbox.getInstance(getApplicationContext(), getString(R.string.mapbox_access_token));
 
 
         //Gets GPS Location
@@ -66,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onLocationChanged(Location location) {
                     lat = location.getLatitude();
                     lng = location.getLongitude();
+
+
                 }
 
                 @Override
@@ -86,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
         //Allows Networking to be done in  the same thread
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+
+
+
+
+
 
 
     }
@@ -159,9 +174,34 @@ public class MainActivity extends AppCompatActivity {
                 }
                 in.close();
 
+                //Sends the String over to MainActivity2
+
+                //Intent sendText2 = new Intent(this, MapBox.class);
+                //sendText2.putExtra("webString2", responseBody);
+                //startActivity(sendText2);
+
+
+
+
+
+                String latString = Double.toString(lat);
+                String lngString = Double.toString(lng);
+
                 Intent sendText = new Intent(this, MainActivity2.class);
+                sendText.putExtra("latString", latString);
+                sendText.putExtra("lngString", lngString);
                 sendText.putExtra("webString", responseBody);
                 startActivity(sendText);
+
+
+
+
+
+
+
+
+
+
 
             } catch (IOException ioe) {
                 input.setText("ERROR1");
@@ -171,6 +211,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             input.setText("ERROR2");
         }
+
+
+
+
+
     }
 
 
