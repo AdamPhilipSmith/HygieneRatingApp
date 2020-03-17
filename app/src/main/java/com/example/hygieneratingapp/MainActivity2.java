@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -24,6 +25,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity2 extends Activity {
 
@@ -38,6 +40,11 @@ public class MainActivity2 extends Activity {
     String ratingDate[] = new String[10];
     String lat[] = new String[10];
     String lng[] = new String[10];
+    String locations;
+    String GsonString;
+    JSONObject test2;
+    String StrLatitude[] = new String[10];
+    String StrLongitude[] = new String[10];
 
     int rating[] = new int[10];
 
@@ -51,23 +58,41 @@ public class MainActivity2 extends Activity {
         String message = startingIntent.getStringExtra("webString");
 
         JSONArray aryJSONStrings = null;
+        JSONArray aryJSONLocations = null;
 
         //Parses through the received info, assigning it to the relevant headers.
         try {
             aryJSONStrings = new JSONArray(message);
 
-            //String latTest = aryJSONStrings.getJSONObject(0).getString("Latitude:");
 
-            //Log.d("Mylog2", latTest);
 
             for (int i = 0; i < aryJSONStrings.length(); i++) {
                 boolean newLineRequired = false;
                 boolean newLineRequired2 = false;
                 String addressTemp = "";
 
+                GsonString = String.valueOf(aryJSONStrings.getJSONObject(i));
 
+                Data data = new Gson().fromJson(GsonString, Data.class);
+
+                StrLatitude[i] = data.Location.Latitude;
+                StrLongitude[i] = data.Location.Longitude;
+                String StrTestLat = data.Location.Latitude;
+                String StrTestLong = data.Location.Longitude;
+
+                Log.d("MylogGsonLat", String.valueOf(StrTestLat));
+                Log.d("MylogGsonLng", String.valueOf(StrTestLong));
+
+
+
+                // Gets all locations and adds them to a string
+                locations += (aryJSONStrings.getJSONObject(i).getString("Location"));
+                Log.d("MylogLocations", locations);
+                //String test = (aryJSONStrings.getJSONObject(i).getString("Location:{Latitude}"));
+                //Log.d("MylogLatitude", test);
 
                 name[i] = aryJSONStrings.getJSONObject(i).getString("BusinessName");
+
 
 
                 postCode[i] = aryJSONStrings.getJSONObject(i).getString("PostCode");
@@ -160,6 +185,16 @@ public class MainActivity2 extends Activity {
 
 
             }
+
+
+
+
+
+            //aryJSONLocations = new JSONArray(locations);
+            //Log.d("MylogArray", String.valueOf(aryJSONLocations));
+            //String latTest = aryJSONLocations.getJSONObject(0).getString("Latitude");
+            //JSONObject locationObject = location;
+            //Log.d("Mylog2", latTest);
 
             //Intent intent = new Intent(this, MapBox.class);
             //intent.putExtra("latitude", lat);
@@ -271,6 +306,9 @@ public class MainActivity2 extends Activity {
 
         //startActivity(sendIntent);
 
+        Log.d("MyLogLatitudeArray",String.valueOf(StrLatitude[0]));
+        Log.d("MyLogLongitudeArray",String.valueOf(StrLongitude[0]));
+
         button=(Button)findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -279,10 +317,15 @@ public class MainActivity2 extends Activity {
 
 
 
-                //Gets lat and long values from above and send them overt to Map Bax when starting Activity
+
                 Intent i = new Intent(MainActivity2.this, MapBox.class);
 
 
+                //Sends Business Coordinates to Map Box
+                i.putExtra("latArray", StrLatitude);
+                i.putExtra("lngArray", StrLongitude);
+
+                //Sends local Coordinates to Map Box
                 i.putExtra("latString", latString);
                 i.putExtra("lngString", lngString);
 
@@ -295,6 +338,15 @@ public class MainActivity2 extends Activity {
         });
 
     }
+    //Classes to allow parsing of Latitude and Longitude with Gson.
+    public class Data {
+        Location Location;
+    }
+
+    class Location {
+        String Latitude;
+        String Longitude;
+ }
 
 }
 
