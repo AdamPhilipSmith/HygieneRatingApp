@@ -110,7 +110,7 @@ public class MapBox extends AppCompatActivity implements
     @Override
     public void onStyleLoaded(@NonNull Style style){
 
-        //TODO Needs heavy refactoring if I have time
+        //TODO Needs heavy refactoring if there's time
 
         SymbolManager sm = new SymbolManager(mapView,map,style);
 
@@ -119,7 +119,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(myPositionLat, myPositionLng))
                 .withIconImage("embassy-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol = sm.create(symbolOptions);
 
@@ -135,7 +135,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat, Dlong))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
 
 
@@ -151,7 +151,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat2, Dlong2))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol3 = sm3.create(symbolOptions3);
 
@@ -164,7 +164,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat3, Dlong3))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol4 = sm4.create(symbolOptions4);
 
@@ -177,7 +177,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat4, Dlong4))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol5 = sm5.create(symbolOptions5);
 
@@ -190,7 +190,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat5, Dlong5))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol6 = sm6.create(symbolOptions6);
 
@@ -203,7 +203,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat6, Dlong6))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol7 = sm7.create(symbolOptions7);
 
@@ -216,7 +216,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat7, Dlong7))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol8 = sm8.create(symbolOptions8);
 
@@ -230,7 +230,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat8, Dlong8))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol9 = sm9.create(symbolOptions9);
 
@@ -243,7 +243,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat9, Dlong9))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol10 = sm10.create(symbolOptions10);
 
@@ -256,7 +256,7 @@ public class MapBox extends AppCompatActivity implements
                 .withLatLng(new LatLng(Dlat10, Dlong10))
                 .withIconImage("restaurant-15")
                 .withIconColor("#334af5")
-                .withIconSize(1.5f);
+                .withIconSize(1f);
 
         Symbol symbol11 = sm11.create(symbolOptions11);
 
