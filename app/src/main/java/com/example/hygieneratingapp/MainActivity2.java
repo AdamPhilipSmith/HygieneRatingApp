@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -27,7 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity2 extends Activity {
+public class MainActivity2 extends AppCompatActivity {
 
     Button button;
     String postCode[] = new String[10];
@@ -98,9 +99,11 @@ public class MainActivity2 extends Activity {
                 postCode[i] = aryJSONStrings.getJSONObject(i).getString("PostCode");
 
                 //Checks if the address line has been supplied and only adds it to the view if so.
+
                 if (!aryJSONStrings.getJSONObject(i).getString("AddressLine1").equals("") ) {
                     addressTemp += aryJSONStrings.getJSONObject(i).getString("AddressLine1");
 
+                    //Boolean to check if 'new line' is required.
                     newLineRequired = true;
                 }
 
@@ -123,13 +126,7 @@ public class MainActivity2 extends Activity {
 
                 address[i] = addressTemp;
 
-                //addressLine1[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine1");
 
-
-                //addressLine2[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine2");
-
-
-                //addressLine3[i] = aryJSONStrings.getJSONObject(i).getString("AddressLine3");
 
 
                 ratingDate[i] = aryJSONStrings.getJSONObject(i).getString("RatingDate");
@@ -187,34 +184,11 @@ public class MainActivity2 extends Activity {
             }
 
 
-
-
-
-            //aryJSONLocations = new JSONArray(locations);
-            //Log.d("MylogArray", String.valueOf(aryJSONLocations));
-            //String latTest = aryJSONLocations.getJSONObject(0).getString("Latitude");
-            //JSONObject locationObject = location;
-            //Log.d("Mylog2", latTest);
-
-            //Intent intent = new Intent(this, MapBox.class);
-            //intent.putExtra("latitude", lat);
-            //startActivity(intent);
-
-            //Intent intent2 = new Intent(this, MapBox.class);
-            //intent2.putExtra("longitude", lng);
-           //startActivity(intent2);
-
-
-
-
             //Catches JSON exceptions and prints a stack trace if so.
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d("JSON error", "JSON error");
         }
-
-
-
 
 
         //Adds addresses to a hash map with the relevant keys
@@ -226,14 +200,6 @@ public class MainActivity2 extends Activity {
             map.put("pcode", postCode[i]);
 
             map.put("address", address[i]);
-
-            //map.put("addressLine1", addressLine1[i]);
-
-
-            //map.put("addressLine2", addressLine2[i]);
-
-
-            //map.put("addressLine3", addressLine3[i]);
 
 
             map.put("ratingDate", "Date Rated :" + ratingDate[i]);
@@ -270,26 +236,8 @@ public class MainActivity2 extends Activity {
 
 
         // Setting the adapter to the listView
-
         listView.setAdapter(adapter);
 
-        //Gets rid of white spaces:
-        //TextView line1 = (TextView) findViewById(R.id.addressLine1);
-        //TextView line2 = (TextView) findViewById(R.id.addressLine2);
-        //TextView line3 = (TextView) findViewById(R.id.addressLine3);
-        //TODO Put all the addresses into one TextView using 'newLine'.
-        //if(line1.getText().equals(""))
-        //{
-        // line1.setVisibility(View.GONE);
-        //}
-        //if(line2.getText().equals(""))
-        //{
-        //line2.setVisibility(View.GONE);
-        //}
-        //if(line3.getText().equals(""))
-        //{
-        //line3.setVisibility(View.GONE);
-        //}
 
 
         //Gets lat and long values from MainActivity 1
@@ -300,16 +248,11 @@ public class MainActivity2 extends Activity {
         final String lngString = receiveIntent2.getStringExtra("lngString");
         Log.d("myLog6", latString);
 
-        //final Intent sendIntent = new Intent(this, MapBox.class);
-        //sendIntent.putExtra("latString", latString);
-        //sendIntent.putExtra("lngString", lngString);
-
-        //startActivity(sendIntent);
 
         Log.d("MyLogLatitudeArray",String.valueOf(StrLatitude[0]));
         Log.d("MyLogLongitudeArray",String.valueOf(StrLongitude[0]));
 
-        button=(Button)findViewById(R.id.button2);
+        button=(Button)findViewById(R.id.mapbox);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

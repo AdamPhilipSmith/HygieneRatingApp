@@ -9,7 +9,7 @@
     <string name="Display">Display</string>
     <string name="BackButton">Search Again</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiYWRhbTE5ODQiLCJhIjoiY2s3dDV2dmp6MDM3eDNvcDJqNm05NzhmZSJ9.eXAsL4oFbySBBwcMTjSPmQ</string>
-    <string name="ViewMapBox">View On Map Box</string>
+    <string name="ViewMapBox">View On Map</string>
 
 
 </resources>
