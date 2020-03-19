@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                //TODO maybe use threading for this?
+                
                 //Gets connection to the database
                 URLConnection connection = url.openConnection();
                 InputStreamReader ins = new InputStreamReader(connection.getInputStream());
