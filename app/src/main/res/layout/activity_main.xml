@@ -15,43 +15,42 @@
         android:id="@+id/SearchByName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="304dp"
-        android:layout_marginBottom="304dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#6cb340"
         android:onClick="Search"
         android:text="@string/SearchByName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/enterName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/showRecent" />
+        app:layout_constraintTop_toBottomOf="@+id/enterPostcode" />
 
     <EditText
         android:id="@+id/enterPostcode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginBottom="17dp"
         android:backgroundTint="#6cb340"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/EnterPostcode"
         android:textColor="#6CB340"
+        app:layout_constraintBottom_toTopOf="@+id/SearchByName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/SearchByPostCode" />
+        app:layout_constraintTop_toBottomOf="@+id/SearchByPostCode" />
 
     <Button
         android:id="@+id/showRecent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="129dp"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="17dp"
         android:backgroundTint="#6cb340"
         android:onClick="Search"
         android:text="@string/ShowRecent"
-        app:layout_constraintBottom_toTopOf="@+id/enterPostcode"
+        app:layout_constraintBottom_toTopOf="@+id/SearchByPostCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/SearchByLocation" />
 
     <EditText
         android:id="@+id/enterName"
@@ -70,11 +69,11 @@
         android:id="@+id/SearchByLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="491dp"
+        android:layout_marginBottom="11dp"
         android:backgroundTint="#6cb340"
         android:onClick="Search"
         android:text="@string/SearchByLocation"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/showRecent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -83,24 +82,14 @@
         android:id="@+id/SearchByPostCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="271dp"
+        android:layout_marginBottom="19dp"
         android:backgroundTint="#6cb340"
         android:onClick="Search"
         android:text="@string/SearchByPostcode"
+        app:layout_constraintBottom_toTopOf="@+id/enterPostcode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SearchByLocation"
-        app:srcCompat="@drawable/foodstandardslogo" />
+        app:layout_constraintTop_toBottomOf="@+id/showRecent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

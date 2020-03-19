@@ -7,15 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
-import com.mapbox.mapboxsdk.maps.MapView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -23,22 +25,18 @@ public class MainActivity2 extends AppCompatActivity {
     String postCode[] = new String[10];
     String name[] = new String[10];
     String address[] = new String[10];
-    String addressLine1[] = new String[10];
-    String addressLine2[] = new String[10];
-    String addressLine3[] = new String[10];
     String distance[] = new String[10];
     String ratingDate[] = new String[10];
     String lat[] = new String[10];
     String lng[] = new String[10];
     String locations;
     String GsonString;
-    JSONObject test2;
     String StrLatitude[] = new String[10];
     String StrLongitude[] = new String[10];
 
     int rating[] = new int[10];
 
-    private MapView mapView;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,10 +44,11 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         Intent startingIntent = getIntent();
 
+        //Gets the text sent over from Main Activity.
         String message = startingIntent.getStringExtra("webString");
 
         JSONArray aryJSONStrings = null;
-        JSONArray aryJSONLocations = null;
+
 
         //Parses through the received info, assigning it to the relevant headers.
         try {
@@ -63,12 +62,12 @@ public class MainActivity2 extends AppCompatActivity {
 
                 GsonString = String.valueOf(aryJSONStrings.getJSONObject(i));
 
-                Data data = new Gson().fromJson(GsonString, Data.class);
+                GSON gson = new Gson().fromJson(GsonString, GSON.class);
 
-                StrLatitude[i] = data.Location.Latitude;
-                StrLongitude[i] = data.Location.Longitude;
-                String StrTestLat = data.Location.Latitude;
-                String StrTestLong = data.Location.Longitude;
+                StrLatitude[i] = gson.Location.Latitude;
+                StrLongitude[i] = gson.Location.Longitude;
+                String StrTestLat = gson.Location.Latitude;
+                String StrTestLong = gson.Location.Longitude;
 
                 Log.d("MylogGsonLat", String.valueOf(StrTestLat));
                 Log.d("MylogGsonLng", String.valueOf(StrTestLong));
@@ -248,7 +247,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     //Classes to allow parsing of Latitude and Longitude with Gson.
-    public class Data {
+    public class GSON {
         Location Location;
     }
 
