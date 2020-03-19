@@ -1,6 +1,5 @@
 package com.example.hygieneratingapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,22 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.gson.Gson;
-import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,6 +39,7 @@ public class MainActivity2 extends AppCompatActivity {
     int rating[] = new int[10];
 
     private MapView mapView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +54,6 @@ public class MainActivity2 extends AppCompatActivity {
         //Parses through the received info, assigning it to the relevant headers.
         try {
             aryJSONStrings = new JSONArray(message);
-
 
 
             for (int i = 0; i < aryJSONStrings.length(); i++) {
@@ -85,39 +74,33 @@ public class MainActivity2 extends AppCompatActivity {
                 Log.d("MylogGsonLng", String.valueOf(StrTestLong));
 
 
-
                 // Gets all locations and adds them to a string
                 locations += (aryJSONStrings.getJSONObject(i).getString("Location"));
                 Log.d("MylogLocations", locations);
-                //String test = (aryJSONStrings.getJSONObject(i).getString("Location:{Latitude}"));
-                //Log.d("MylogLatitude", test);
 
                 name[i] = aryJSONStrings.getJSONObject(i).getString("BusinessName");
-
-
 
                 postCode[i] = aryJSONStrings.getJSONObject(i).getString("PostCode");
 
                 //Checks if the address line has been supplied and only adds it to the view if so.
-
-                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine1").equals("") ) {
+                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine1").equals("")) {
                     addressTemp += aryJSONStrings.getJSONObject(i).getString("AddressLine1");
 
                     //Boolean to check if 'new line' is required.
                     newLineRequired = true;
                 }
 
-                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine2").equals("")){
+                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine2").equals("")) {
 
-                    if (newLineRequired == true){
+                    if (newLineRequired == true) {
                         addressTemp += "\n";
                     }
 
                     addressTemp += aryJSONStrings.getJSONObject(i).getString("AddressLine2");
                     newLineRequired2 = true;
                 }
-                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine3").equals("")){
-                    if (newLineRequired2 == true){
+                if (!aryJSONStrings.getJSONObject(i).getString("AddressLine3").equals("")) {
+                    if (newLineRequired2 == true) {
                         addressTemp += "\n";
                     }
                     addressTemp += aryJSONStrings.getJSONObject(i).getString("AddressLine3");
@@ -126,11 +109,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                 address[i] = addressTemp;
 
-
-
-
                 ratingDate[i] = aryJSONStrings.getJSONObject(i).getString("RatingDate");
-
 
                 //Checks to see if 'DistanceKM' exists before trying to access. Stops crash.
                 if (aryJSONStrings.getJSONObject(i).has("DistanceKM")) {
@@ -141,14 +120,6 @@ public class MainActivity2 extends AppCompatActivity {
                     //Cuts down the decimal places of distance
                     distance[i] = distanceLong.substring(0, 4);
                 }
-
-
-
-
-
-
-
-
 
                 //Following 'IF' statements assign correct image to the rating
                 if (aryJSONStrings.getJSONObject(i).getString("RatingValue").equals("0")) {
@@ -180,9 +151,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                 }
 
-
             }
-
 
             //Catches JSON exceptions and prints a stack trace if so.
         } catch (JSONException e) {
@@ -239,7 +208,6 @@ public class MainActivity2 extends AppCompatActivity {
         listView.setAdapter(adapter);
 
 
-
         //Gets lat and long values from MainActivity 1
         Intent receiveIntent2 = this.getIntent();
 
@@ -249,16 +217,13 @@ public class MainActivity2 extends AppCompatActivity {
         Log.d("myLog6", latString);
 
 
-        Log.d("MyLogLatitudeArray",String.valueOf(StrLatitude[0]));
-        Log.d("MyLogLongitudeArray",String.valueOf(StrLongitude[0]));
+        Log.d("MyLogLatitudeArray", String.valueOf(StrLatitude[0]));
+        Log.d("MyLogLongitudeArray", String.valueOf(StrLongitude[0]));
 
-        button=(Button)findViewById(R.id.mapbox);
+        button = (Button) findViewById(R.id.mapbox);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
 
 
                 Intent i = new Intent(MainActivity2.this, MapBox.class);
@@ -274,13 +239,14 @@ public class MainActivity2 extends AppCompatActivity {
 
                 startActivity(i);
 
-                //startActivity(i);
+
             }
 
 
         });
 
     }
+
     //Classes to allow parsing of Latitude and Longitude with Gson.
     public class Data {
         Location Location;
@@ -289,7 +255,7 @@ public class MainActivity2 extends AppCompatActivity {
     class Location {
         String Latitude;
         String Longitude;
- }
+    }
 
 }
 
