@@ -7,14 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,18 +56,14 @@ public class MainActivity2 extends AppCompatActivity {
                 boolean newLineRequired2 = false;
                 String addressTemp = "";
 
+
+                //Creates new Gson object in order to parse the Lat and Long to then send over to the MapBox
                 GsonString = String.valueOf(aryJSONStrings.getJSONObject(i));
 
                 GSON gson = new Gson().fromJson(GsonString, GSON.class);
 
                 StrLatitude[i] = gson.Location.Latitude;
                 StrLongitude[i] = gson.Location.Longitude;
-                String StrTestLat = gson.Location.Latitude;
-                String StrTestLong = gson.Location.Longitude;
-
-                Log.d("MylogGsonLat", String.valueOf(StrTestLat));
-                Log.d("MylogGsonLng", String.valueOf(StrTestLong));
-
 
                 // Gets all locations and adds them to a string
                 locations += (aryJSONStrings.getJSONObject(i).getString("Location"));
@@ -213,12 +205,9 @@ public class MainActivity2 extends AppCompatActivity {
 
         final String latString = receiveIntent2.getStringExtra("latString");
         final String lngString = receiveIntent2.getStringExtra("lngString");
-        Log.d("myLog6", latString);
 
 
-        Log.d("MyLogLatitudeArray", String.valueOf(StrLatitude[0]));
-        Log.d("MyLogLongitudeArray", String.valueOf(StrLongitude[0]));
-
+        //Button for opening up the Map View and sending across the coordinates
         button = (Button) findViewById(R.id.mapbox);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

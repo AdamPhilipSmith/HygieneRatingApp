@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Hygiene Rating App</string>
     <string name="SearchByLocation">Search by Current Location</string>
-    <string name="SearchByName">Search by Name</string>
+    <string name="SearchByName">Search by Business Name</string>
     <string name="SearchByPostcode">Search by Postcode</string>
     <string name="ShowRecent">Show Recently Rated</string>
     <string name="EnterPostcode">Enter Postcode</string>
-    <string name="EnterName">Enter Name</string>
+    <string name="EnterName">Enter Business Name</string>
     <string name="Display">Display</string>
-    <string name="BackButton">Search Again</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiYWRhbTE5ODQiLCJhIjoiY2s3dDV2dmp6MDM3eDNvcDJqNm05NzhmZSJ9.eXAsL4oFbySBBwcMTjSPmQ</string>
     <string name="ViewMapBox">View On Map</string>
+    <string name="RatingPic">RatingPic</string>
 
 
 </resources>

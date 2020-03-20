@@ -14,12 +14,9 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import com.mapbox.mapboxsdk.Mapbox;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -148,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                
+
                 //Gets connection to the database
                 URLConnection connection = url.openConnection();
                 InputStreamReader ins = new InputStreamReader(connection.getInputStream());

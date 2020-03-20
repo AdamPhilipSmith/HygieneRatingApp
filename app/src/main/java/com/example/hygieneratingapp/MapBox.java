@@ -3,7 +3,6 @@ package com.example.hygieneratingapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -16,6 +15,7 @@ import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.Symbol;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
+
 import static java.lang.Double.parseDouble;
 
 
@@ -52,7 +52,6 @@ public class MapBox extends AppCompatActivity implements
 
 
         String latString = receiveIntent.getStringExtra("latString");
-        Log.d("myLog", latString);
         myPositionLat = parseDouble(latString);
         String lngString = receiveIntent.getStringExtra("lngString");
         myPositionLng = parseDouble(lngString);
@@ -60,10 +59,8 @@ public class MapBox extends AppCompatActivity implements
 
         latArray = receiveIntent.getStringArrayExtra("latArray");
         longArray = receiveIntent.getStringArrayExtra("lngArray");
-        Log.d("MyLogLatitudeArray2", String.valueOf(latArray[0]));
-        Log.d("MyLogLongitudeArray2", String.valueOf(longArray[0]));
-        Log.d("myLog", latString);
 
+        //Sets the map to the GPS location
         mapboxMap.setCameraPosition(
                 new CameraPosition.Builder()
                         .target(new LatLng(myPositionLat, myPositionLng))
@@ -96,9 +93,6 @@ public class MapBox extends AppCompatActivity implements
             for (int i=0; i<10; i++) {
             Double Dlat = parseDouble(latArray[i]);
             Double Dlong = parseDouble(longArray[i]);
-
-            //Log.d("MyLogParsedDoubleLat", String.valueOf(Dlat));
-            //Log.d("MyLogParsedDoubleLong", String.valueOf(Dlong));
 
             SymbolManager sm2 = new SymbolManager(mapView, map, style);
 
@@ -150,7 +144,7 @@ public class MapBox extends AppCompatActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mapView.onDestroy();
+    mapView.onDestroy();
     }
 
     @Override
