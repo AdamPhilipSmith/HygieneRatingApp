@@ -6,6 +6,8 @@ Android app written in Java. It will find the nearest 10 food establishments to 
 
 ![image](https://user-images.githubusercontent.com/47950278/79767845-d6da1f80-8321-11ea-9cf9-b827012db809.png)            ![image](https://user-images.githubusercontent.com/47950278/79768135-3f290100-8322-11ea-9d18-c4935bf0cd42.png)
 
+<img src=(https://user-images.githubusercontent.com/47950278/79767845-d6da1f80-8321-11ea-9cf9-b827012db809.png) alt=Results style="width:500px;height:600px;">
+
 
 
 
