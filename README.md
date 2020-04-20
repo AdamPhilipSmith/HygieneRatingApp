@@ -4,8 +4,7 @@
 Android app written in Java. It will find the nearest 10 food establishments to the user (by checking the phone GPS) and providing their address and hygeine rating received from the Food Standards Agency. These can also be viewed on a map. Establishments can also be searched by name and Postcode.
 
 
-![image](https://user-images.githubusercontent.com/47950278/79770069-d3946300-8324-11ea-8466-e8f743ede095.png)
-![image](https://user-images.githubusercontent.com/47950278/79770006-b8c1ee80-8324-11ea-90b4-4f1154aa35d5.png)
+![image](https://user-images.githubusercontent.com/47950278/79770069-d3946300-8324-11ea-8466-e8f743ede095.png)        ![image](https://user-images.githubusercontent.com/47950278/79770006-b8c1ee80-8324-11ea-90b4-4f1154aa35d5.png)
 
 
 
